@@ -12,11 +12,12 @@
     <tr>
         <td>Product Line</td>
         <td>Product Vendor</td>
-        <td>Product  Code</td>
+        <td>Product Code</td>
         <td>ProductName</td>
-        <td>Quantity In Stock</td>
-        <td>Sales Quantity</td>
-        <td>Sales Trade</td>
+        <td>Quantity Ordered</td>
+        <td>Price Each</td>
+        <td>Order Status</td>
+        <td>Order From City</td>
     </tr>
     <c:forEach items='${requestScope["salesReport"]}' var="reportItem">
         <tr>
@@ -24,9 +25,10 @@
             <td>${reportItem.getProductVendor()}</td>
             <td><a href="/products?action=view&code=${reportItem.getProductCode()}">${reportItem.getProductCode()}</a></td>
             <td>${reportItem.getProductName()}</td>
-            <td>${reportItem.getQuantityInStock()}</td>
-            <td>${reportItem.getSalesQuantity()}</td>
-            <td>${reportItem.getSalesTrade()}</td>
+            <td>${reportItem.getQuantityOrdered()}</td>
+            <td>${reportItem.getPriceEach()}</td>
+            <td>${reportItem.getOrderStatus()}</td>
+            <td>${reportItem.getOrderFromCity()}</td>
         </tr>
     </c:forEach>
 </table>

@@ -6,9 +6,10 @@ public class ProductSalesReportItem {
   private String productVendor;
   private String productCode;
   private String productName;
-  private int quantityInStock;
-  private int salesQuantity;
-  private double salesTrade;
+  private int quantityOrdered;
+  private double priceEach;
+  private String orderStatus;
+  private String orderFromCity;
 
   public ProductSalesReportItem() {
   }
@@ -45,27 +46,35 @@ public class ProductSalesReportItem {
     this.productName = productName;
   }
 
-  public int getQuantityInStock() {
-    return quantityInStock;
+  public int getQuantityOrdered() {
+    return quantityOrdered;
   }
 
-  public void setQuantityInStock(int quantityInStock) {
-    this.quantityInStock = quantityInStock;
+  public void setQuantityOrdered(int quantityOrdered) {
+    this.quantityOrdered = quantityOrdered;
   }
 
-  public int getSalesQuantity() {
-    return salesQuantity;
+  public double getPriceEach() {
+    return priceEach;
   }
 
-  public void setSalesQuantity(int salesQuantity) {
-    this.salesQuantity = salesQuantity;
+  public void setPriceEach(double priceEach) {
+    this.priceEach = priceEach;
   }
 
-  public double getSalesTrade() {
-    return salesTrade;
+  public String getOrderStatus() {
+    return orderStatus;
   }
 
-  public void setSalesTrade(double salesTrade) {
-    this.salesTrade = salesTrade;
+  public void setOrderStatus(String orderStatus) {
+    this.orderStatus = orderStatus;
+  }
+
+  public String getOrderFromCity() {
+    return orderFromCity;
+  }
+
+  public void setOrderFromCity(String orderFromCity) {
+    this.orderFromCity = orderFromCity;
   }
 }

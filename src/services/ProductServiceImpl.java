@@ -22,13 +22,16 @@ public class ProductServiceImpl implements ProductService {
       + "  p.productVendor,\n"
       + "  p.productCode,\n"
       + "  p.productName,\n"
-      + "  p.quantityInStock,\n"
-      + "  SUM(od.quantityOrdered) AS salesQuantity,\n"
-      + "  SUM(od.quantityOrdered * od.priceEach) salesTrade\n"
+      + "  od.quantityOrdered,\n"
+      + "  od.priceEach,\n"
+      + "  o.status,\n"
+      + "  c.city\n"
       + "FROM products p\n"
       + "  INNER JOIN productlines pl ON p.productLine = pl.productLine\n"
       + "  INNER JOIN orderdetails od ON p.productCode = od.productCode\n"
-      + "GROUP BY pl.productLine, p.productVendor, p.productCode, p.productName, p.quantityInStock;";
+      + "  INNER JOIN orders o ON od.orderNumber = o.orderNumber\n"
+      + "  INNER JOIN customers c ON o.customerNumber = c.customerNumber\n"
+      + "ORDER BY p.productLine, p.productVendor, p.productCode, od.quantityOrdered DESC, o.status, c.city;";
 
   @Override
   public List<ProductSalesReportItem> getSalesReport() throws ClassNotFoundException, SQLException {
@@ -50,9 +53,10 @@ public class ProductServiceImpl implements ProductService {
       report.setProductVendor(rs.getString("productVendor"));
       report.setProductCode(rs.getString("productCode"));
       report.setProductName(rs.getString("productName"));
-      report.setQuantityInStock(rs.getInt("quantityInStock"));
-      report.setSalesQuantity(rs.getInt("salesQuantity"));
-      report.setSalesTrade(rs.getDouble("salesTrade"));
+      report.setQuantityOrdered(rs.getInt("quantityOrdered"));
+      report.setPriceEach(rs.getDouble("priceEach"));
+      report.setOrderStatus(rs.getString("status"));
+      report.setOrderFromCity(rs.getString("city"));
 
       products.add(report);
     }
